@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore - Modern Electronics Store</title>
+    <meta name="description" content="Discover the latest electronics and gadgets at TechStore">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- aos animation  -->
+     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top custom-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#" id="homeBtn">
+                <i class="fas fa-bolt text-primary me-2"></i>
+                <span class="fw-bold">TechStore</span>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" id="homeLink">
+                            <i class="fas fa-home me-1"></i>Home
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-th-large me-1"></i>Categories
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item category-link" href="#" data-category="smartphones">
+                                <i class="fas fa-mobile-alt me-2"></i>Smartphones
+                            </a></li>
+                            <li><a class="dropdown-item category-link" href="#" data-category="laptops">
+                                <i class="fas fa-laptop me-2"></i>Laptops
+                            </a></li>
+                            <li><a class="dropdown-item category-link" href="#" data-category="headphones">
+                                <i class="fas fa-headphones me-2"></i>Headphones
+                            </a></li>
+                            <li><a class="dropdown-item category-link" href="#" data-category="tablets">
+                                <i class="fas fa-tablet-alt me-2"></i>Tablets
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" id="allProductsLink">
+                                <i class="fas fa-list me-2"></i>All Products
+                            </a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">
+                            <i class="fas fa-info-circle me-1"></i>About
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">
+                            <i class="fas fa-envelope me-1"></i>Contact
+                        </a>
+                    </li>
+                </ul>
+                
+                <!-- Search Bar -->
+                <div class="d-flex">
+                    <div class="input-group me-3">
+                        <input type="text" class="form-control search-input" placeholder="Search products..." id="searchInput">
+                        <button class="btn btn-outline-primary" type="button" id="searchBtn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-shopping-cart me-1"></i>
+                        <span class="badge bg-light text-dark ms-1" id="cartCount">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <h1 class="hero-title">
+                            Discover the Latest
+                            <span class="gradient-text">Tech Innovations</span>
+                        </h1>
+                        <p class="hero-subtitle">
+                            Explore our curated collection of cutting-edge electronics and gadgets
+                        </p>
+                        <div class="hero-buttons">
+                            <button class="btn btn-primary btn-lg me-3" id="shopNowBtn">
+                                <i class="fas fa-shopping-bag me-2"></i>Shop Now
+                            </button>
+                            <button class="btn btn-outline-light btn-lg" id="exploreBtn">
+                                <i class="fas fa-compass me-2"></i>Explore
+                            </button>
+                        </div>
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <div class="stat-number" id="totalProducts">0</div>
+                                <div class="stat-label">Products</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">4.9</div>
+                                <div class="stat-label">Rating</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">10K+</div>
+                                <div class="stat-label">Customers</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-image">
+                        <img src="https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                             alt="Latest Technology" class="img-fluid rounded-4 shadow-lg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Loading Spinner -->
+    <div class="loading-spinner" id="loadingSpinner">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="mt-3">Loading amazing products...</p>
+    </div>
+
+    <!-- Products Section -->
+    <section class="products-section py-5" id="productsSection">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <h2 class="section-title">Featured Products</h2>
+                <p class="section-subtitle">Discover our handpicked selection of premium electronics</p>
+            </div>
+            
+            <!-- Filter Buttons -->
+            <div class="filter-buttons text-center mb-4" id="filterButtons">
+                <button class="btn btn-outline-primary active me-2 mb-2" data-filter="all">
+                    <i class="fas fa-th me-1"></i>All Products
+                </button>
+            </div>
+            
+            <!-- Products Grid -->
+            <div class="row" id="productsGrid">
+                <!-- Products will be loaded here dynamically -->
+            </div>
+            
+            <!-- No Results Message -->
+            <div class="no-results text-center py-5" id="noResults" style="display: none;">
+                <i class="fas fa-search text-muted mb-3" style="font-size: 4rem;"></i>
+                <h3 class="text-muted">No products found</h3>
+                <p class="text-muted">Try adjusting your search or filters</p>
+                <button class="btn btn-primary" id="clearSearchBtn">
+                    <i class="fas fa-refresh me-2"></i>Show All Products
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+     
+    <section class="about-section py-5" id="about">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="about-content">
+                        <h2 class="section-title mb-4">About TechStore</h2>
+                        <p class="lead mb-4">
+                            We're passionate about bringing you the latest and greatest in technology. 
+                            Our curated selection features premium electronics from trusted brands.
+                        </p>
+                        <div class="about-features">
+                            <div class="feature-item">
+                                <i class="fas fa-shipping-fast text-primary me-3"></i>
+                                <span>Fast & Free Shipping</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-shield-alt text-success me-3"></i>
+                                <span>2 Year Warranty</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-headset text-info me-3"></i>
+                                <span>24/7 Customer Support</span>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+                
+                <div class="col-lg-6">
+                    <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="About Us" class="img-fluid rounded-4 shadow-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Contact Section -->
+    <section class="contact-section py-5" id="contact">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Have questions? We'd love to hear from you</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="contact-form-wrapper">
+                        <form id="contactForm" class="contact-form">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="subject" class="form-label">Subject</label>
+                                <input type="text" class="form-control" id="subject" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control" id="message" rows="5" required></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-paper-plane me-2"></i>Send Message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-brand">
+                        <h5 class="text-white mb-3">
+                            <i class="fas fa-bolt text-primary me-2"></i>TechStore
+                        </h5>
+                        <p class="text-light">Your trusted partner for premium electronics and cutting-edge technology.</p>
+                        <div class="social-links">
+                            <a href="https://www.facebook.com/profile.php?id=61565215091940" class="social-link" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://x.com/home" class="social-link" target="_blank"><i class="fab fa-twitter "></i></a>
+                            <a href="https://www.instagram.com/" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.linkedin.com/feed/" class="social-link" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="text-white mb-3">Quick Links</h6>
+                    <ul class="footer-links">
+                        <li><a href="#" class="footer-link" id="footerHome">Home</a></li>
+                        <li><a href="#about" class="footer-link">About</a></li>
+                        <li><a href="#contact" class="footer-link">Contact</a></li>
+                        <li><a href="#" class="footer-link">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="text-white mb-3">Categories</h6>
+                    <ul class="footer-links">
+                        <li><a href="#" class="footer-link category-link" data-category="smartphones">Smartphones</a></li>
+                        <li><a href="#" class="footer-link category-link" data-category="laptops">Laptops</a></li>
+                        <li><a href="#" class="footer-link category-link" data-category="headphones">Headphones</a></li>
+                        <li><a href="#" class="footer-link category-link" data-category="tablets">Tablets</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <h6 class="text-white mb-3">Newsletter</h6>
+                    <p class="text-light mb-3">Subscribe to get updates on new products and offers</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Enter your email" required>
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <hr class="footer-divider">
+            
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="footer-copyright mb-0">
+                        &copy; 2024 TechStore. All rights reserved.
+                    </p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="footer-api mb-0">
+                        <i class="fas fa-database me-1"></i>
+                        Powered by MockAPI
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Product Modal -->
+    <div class="modal fade" id="productModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalProductName">Product Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <!-- Product details will be loaded here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="addToCartBtn">
+                        <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container position-fixed top-0 end-0 p-3" id="toastContainer">
+        <!-- Toasts will be added here dynamically -->
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+
+    <!-- animation  -->
+     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+     <script>
+     AOS.init();
+      </script>
+</body>
+</html>
